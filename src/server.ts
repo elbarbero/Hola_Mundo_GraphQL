@@ -5,6 +5,7 @@ import cors from 'cors';
 import schema from './schema';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
+import expressPLayground from 'graphql-playground-middleware-express';
 
 
 const app = express();
@@ -19,6 +20,9 @@ const server = new ApolloServer({
 
 //{} esto es en formato objeto
 server.applyMiddleware({ app }); //Asi ya podemos leer en formato JSON
+app.use('/', expressPLayground({
+    endpoint: '/graphql'
+}));
 
 /*const typeDefs = `
     type Query {
